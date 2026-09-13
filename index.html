@@ -1,34 +1,85 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpustakaan MI Alma'arif 02</title>
-    
-    <link rel="icon" type="image/png" href="apple-touch-icon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendaftaran Delegasi — Danyangan Adventure Team</title>
 
-    <style>
-        /* Mengatur background body agar sama dengan background PERLIM (Gelap/Hijau Tua) */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            height: 100%; 
-            overflow: hidden; 
-            /* Warna dasar dari aplikasi PERLIM Anda */
-            background-color: #04190f; 
-        }
-        iframe { 
-            border: none; 
-            width: 100%; 
-            height: 100%; 
-            /* Memberikan warna background yang sama pada iframe agar tidak ada "flash" putih saat loading */
-            background-color: #04190f; 
-        }
-    </style>
+<!-- favicon SVG inline — tanpa perlu file PNG di repo -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23FF4D00'/%3E%3C/svg%3E">
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;        /* scroll formulir terjadi DI DALAM iframe */
+    background: #FFFFFF;     /* sama dengan --paper formulir → tanpa flash */
+  }
+  .stage { position: relative; width: 100%; height: 100%; }
+
+  /* loader Swiss di belakang iframe — GAS butuh 1–3 detik untuk boot */
+  .boot {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+    color: #8A8A7E; background: #F1F0EA;
+    z-index: 0; transition: opacity .35s;
+  }
+  .boot .sq { width: 16px; height: 16px; background: #FF4D00; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 50% { opacity: .25; } }
+  .boot a {
+    font-family: inherit; font-size: 10px; letter-spacing: .2em;
+    text-transform: uppercase; color: #161512;
+    border-bottom: 2px solid #FF4D00; text-decoration: none; padding-bottom: 2px;
+  }
+
+  iframe {
+    position: relative; z-index: 1;
+    border: none; width: 100%; height: 100%;
+    background: #FFFFFF;
+  }
+</style>
 </head>
 <body>
-    <!-- Tambahkan loading="lazy" agar iframe tidak membebani render awal -->
-    <iframe src="https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec" allow="geolocation" loading="lazy"></iframe>
+<div class="stage">
+  <div class="boot" id="boot">
+    <span class="sq"></span>
+    <span>Memuat Formulir…</span>
+    <a id="directLink" href="#" target="_blank" rel="noopener">Buka Langsung di Tab Baru</a>
+  </div>
+  <!--
+    allow="downloads"      → WAJIB: tanpa ini browser memblokir unduhan PDF
+                             dari iframe lintas-origin (GitHub Pages → Google)
+    allow="clipboard-write"→ tombol SALIN no. registrasi tetap berfungsi
+    allow="popups"         → fallback "Buka di Tab Baru" tetap berfungsi
+    JANGAN tambahkan atribut sandbox — akan memblokir semuanya.
+  -->
+  <iframe id="app"
+    src="https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec"
+    allow="downloads; clipboard-write; popups"
+    referrerpolicy="no-referrer"
+    title="Formulir Pendaftaran Delegasi — Danyangan Adventure Team"></iframe>
+</div>
+
+<script>
+  (function () {
+    var app = document.getElementById('app');
+    var boot = document.getElementById('boot');
+    var directLink = document.getElementById('directLink');
+
+    /* tautan darurat otomatis mengikuti URL iframe */
+    directLink.href = app.src;
+
+    /* sembunyikan loader begitu web app termuat (idempotent — GAS bisa
+       melewati beberapa navigasi internal sebelum selesai) */
+    app.addEventListener('load', function () {
+      boot.style.opacity = '0';
+      setTimeout(function () { boot.style.display = 'none'; }, 400);
+    });
+  })();
+</script>
 </body>
 </html>
