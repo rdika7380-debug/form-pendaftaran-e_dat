@@ -3,63 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mengalihkan ke Pendaftaran...</title>
-    
-    <!-- Redirect Otomatis via Meta Refresh (0 Detik) -->
-    <meta http-equiv="refresh" content="0;url=https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec">
-    
+    <title>Form Pendaftaran (Event)</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f9f9fb;
-            color: #2d3748;
-        }
-        .loading-box {
-            text-align: center;
-            padding: 20px;
-        }
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: #3182ce;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        a {
-            color: #3182ce;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-
-    <div class="loading-box">
-        <div class="spinner"></div>
-        <p>Menghubungkan ke Pendaftaran Delegasi...</p>
-        <p style="font-size: 14px; color: #718096;">
-            Jika halaman tidak berpindah, <a href="https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec">klik di sini</a>.
-        </p>
-    </div>
-
-    <!-- Redirect Cadangan via JavaScript (Instan) -->
-    <script>
-        window.location.href = "https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec";
-    </script>
-
+    <!-- Atribut allow="geolocation" telah ditambahkan agar Apps Script bisa mengakses lokasi -->
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec" 
+        allow="geolocation">
+    </iframe>
 </body>
 </html>
