@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pendaftaran (Event)</title>
+    <title>Perpustakaan MI Alma'arif 02</title>
+    
+    <link rel="icon" type="image/png" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { border: none; width: 100%; height: 100%; }
+        /* Mengatur background body agar sama dengan background PERLIM (Gelap/Hijau Tua) */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            overflow: hidden; 
+            /* Warna dasar dari aplikasi PERLIM Anda */
+            background-color: #04190f; 
+        }
+        iframe { 
+            border: none; 
+            width: 100%; 
+            height: 100%; 
+            /* Memberikan warna background yang sama pada iframe agar tidak ada "flash" putih saat loading */
+            background-color: #04190f; 
+        }
     </style>
 </head>
 <body>
-    <!-- Atribut allow="geolocation" telah ditambahkan agar Apps Script bisa mengakses lokasi -->
-    <iframe 
-        src="https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec" 
-        allow="geolocation">
-    </iframe>
+    <!-- Tambahkan loading="lazy" agar iframe tidak membebani render awal -->
+    <iframe src="https://script.google.com/macros/s/AKfycbwPZEWemcYcHElCGQI9RZmHeoaPfyuL-FY7tiTCzJ6fD28HVaxQLnWcGqytqd_u7BIEiA/exec" allow="geolocation" loading="lazy"></iframe>
 </body>
 </html>
